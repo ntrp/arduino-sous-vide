@@ -34,7 +34,7 @@
 // Pin definitions
 // ************************************************
 
-// Output Relay
+// Output Relayasd
 #define RelayPin 10
 
 // One-Wire Temperature Sensor
@@ -47,7 +47,7 @@
 // PID Variables and constants
 // ************************************************
 
-//Define Variables we'll be connecting to
+// Define Variables we'll be connecting to
 double Setpoint;
 double Input;
 double Output;
@@ -69,7 +69,7 @@ const int KpAddress = 8;
 const int KiAddress = 16;
 const int KdAddress = 24;
 
-//Specify the links and initial tuning parameters
+// Specify the links and initial tuning parameters
 PID myPID(&Input, &Output, &Setpoint, Kp, Ki, Kd, DIRECT);
 
 // 10 second Time Proportional Output window
@@ -95,32 +95,24 @@ PID_ATune aTune(&Input, &Output);
 
 LiquidCrystal_I2C lcd(0x27, 20, 4);
 
-byte degree[8] = // define the degree symbol
-{
-  B00110,
-  B01001,
-  B01001,
-  B00110,
-  B00000,
-  B00000,
-  B00000,
-  B00000
-};
+byte degree[8] =  // define the degree symbol
+    {B00110, B01001, B01001, B00110, B00000, B00000, B00000, B00000};
 
-const int logInterval = 10000; // log every 10 seconds
+const int logInterval = 10000;  // log every 10 seconds
 long lastLogTime = 0;
 
 // ************************************************
 // States for state machine
 // ************************************************
-enum operatingState { OFF = 0, RUN, AUTOTUNE};
+enum operatingState { OFF = 0, RUN, AUTOTUNE };
 operatingState opState = OFF;
 
 // ************************************************
 // Sensor Variables and constants
 // Data wire is plugged into port 2 on the Arduino
 
-// Setup a oneWire instance to communicate with any OneWire devices (not just Maxim/Dallas temperature ICs)
+// Setup a oneWire instance to communicate with any OneWire devices (not just
+// Maxim/Dallas temperature ICs)
 OneWire oneWire(ONE_WIRE_BUS);
 
 // Pass our oneWire reference to Dallas Temperature.
@@ -134,35 +126,38 @@ SoftwareSerial sSerial(12, 13);
 char field_separator = ',';
 char command_separator = ';';
 
-CmdMessenger cmdMessenger = CmdMessenger(sSerial, field_separator, command_separator);
+CmdMessenger cmdMessenger =
+    CmdMessenger(sSerial, field_separator, command_separator);
 
-enum
-{
-  kCOMM_ERROR    = 000, // Lets Arduino report serial port comm error back to the PC (only works for some comm errors)
-  kACK           = 001, // Arduino acknowledges cmd was received
-  kARDUINO_READY = 002, // After opening the comm port, send this cmd 02 from PC to check arduino is ready
-  kERR           = 003, // Arduino reports badly formatted cmd, or cmd not recognised
+enum {
+  kCOMM_ERROR = 000,  // Lets Arduino report serial port comm error back to the
+                      // PC (only works for some comm errors)
+  kACK = 001,         // Arduino acknowledges cmd was received
+  kARDUINO_READY = 002,  // After opening the comm port, send this cmd 02 from
+                         // PC to check arduino is ready
+  kERR = 003,  // Arduino reports badly formatted cmd, or cmd not recognised
 
-  // Now we can define many more 'send' commands, coming from the arduino -> the PC, eg
+  // Now we can define many more 'send' commands, coming from the arduino -> the
+  // PC, eg
   // kICE_CREAM_READY,
   // kICE_CREAM_PRICE,
-  // For the above commands, we just call cmdMessenger.sendCmd() anywhere we want in our Arduino program.
+  // For the above commands, we just call cmdMessenger.sendCmd() anywhere we
+  // want in our Arduino program.
 
-  kGET_TEMP      = 004,
-  kRUN           = 005,
+  kGET_TEMP = 004,
+  kRUN = 005,
 
-  kSEND_CMDS_END, // Mustnt delete this line
+  kSEND_CMDS_END,  // Mustnt delete this line
 };
 
-void get_temp()
-{
-  // In response to ping. We just send a throw-away Acknowledgement to say "im alive"
+void get_temp() {
+  // In response to ping. We just send a throw-away Acknowledgement to say "im
+  // alive"
   sensors.requestTemperatures();
   cmdMessenger.sendCmd(kACK, String(sensors.getTempC(tempSensor)));
 }
 
-void system_run()
-{
+void system_run() {
   lcd.print(F("Sp: "));
   lcd.print(Setpoint);
   lcd.write(1);
@@ -177,8 +172,7 @@ void system_run()
 // ************************************************
 // Setup and diSplay initial screen
 // ************************************************
-void setup()
-{
+void setup() {
   Serial.begin(9600);
   sSerial.begin(115200);
 
@@ -202,7 +196,7 @@ void setup()
   // Initialize LCD DiSplay
 
   lcd.begin();
-  lcd.createChar(1, degree); // create degree symbol from the binary
+  lcd.createChar(1, degree);  // create degree symbol from the binary
   lcd.backlight();
 
   lcd.clear();
@@ -213,13 +207,12 @@ void setup()
   // Start up the DS18B20 One Wire Temperature Sensor
 
   sensors.begin();
-  if (!sensors.getAddress(tempSensor, 0))
-  {
+  if (!sensors.getAddress(tempSensor, 0)) {
     lcd.setCursor(0, 1);
     lcd.print(F("Sensor Error"));
   }
   sensors.setResolution(tempSensor, 12);
-  //sensors.setWaitForConversion(false);
+  // sensors.setWaitForConversion(false);
 
   delay(3000);  // Splash screen
 
@@ -234,7 +227,7 @@ void setup()
   TCCR2A = 0;
   TCCR2B = 1 << CS22 | 1 << CS21 | 1 << CS20;
 
-  //Timer2 Overflow Interrupt Enable
+  // Timer2 Overflow Interrupt Enable
   TIMSK2 |= 1 << TOIE2;
 }
 
@@ -242,7 +235,6 @@ void setup()
 // Timer Interrupt Handler
 // ************************************************
 SIGNAL(TIMER2_OVF_vect) {
-
   if (opState == OFF) {
     digitalWrite(RelayPin, LOW);  // make sure relay is off
   } else {
@@ -256,9 +248,7 @@ SIGNAL(TIMER2_OVF_vect) {
 // All state changes pass through here
 // ************************************************
 void loop() {
-
-  if (opState == RUN)
-  {
+  if (opState == RUN) {
     DoControl();
 
     lcd.setCursor(0, 1);
@@ -271,12 +261,11 @@ void loop() {
     lcd.print(F("      "));
     lcd.setCursor(10, 1);
     lcd.print(pct / 10);
-    //lcd.print(Output);
+    // lcd.print(Output);
     lcd.print("%");
 
     // periodically log to serial port in csv format
-    if (millis() - lastLogTime > logInterval)
-    {
+    if (millis() - lastLogTime > logInterval) {
       Serial.print(Input);
       Serial.print(",");
       Serial.println(Output);
@@ -294,7 +283,8 @@ void test() {
   char* rxParameter;
   byte rxByteItr = 0;
 
-  while (Serial.available() && rxString[rxByteItr] != 13 && ++rxByteItr < RX_MAX_LENGTH) {
+  while (Serial.available() && rxString[rxByteItr] != 13 && ++rxByteItr <
+RX_MAX_LENGTH) {
     rxString[rxByteItr] = Serial.read();
   }
 
@@ -359,8 +349,7 @@ void txLine(String str) {
 // ************************************************
 // Initial State - press RIGHT to enter setpoint
 // ************************************************
-void Off()
-{
+void Off() {
   myPID.SetMode(MANUAL);
   lcd.noBacklight();
   digitalWrite(RelayPin, LOW);  // make sure it is off
@@ -372,23 +361,21 @@ void Off()
 // ************************************************
 // Execute the control loop
 // ************************************************
-void DoControl()
-{
+void DoControl() {
   // Read the input:
-  if (sensors.isConversionAvailable(0))
-  {
+  if (sensors.isConversionAvailable(0)) {
     Input = sensors.getTempC(tempSensor);
-    sensors.requestTemperatures(); // prime the pump for the next one - but don't wait
+    sensors.requestTemperatures();  // prime the pump for the next one - but
+                                    // don't wait
   }
 
-  if (tuning) // run the auto-tuner
+  if (tuning)  // run the auto-tuner
   {
-    if (aTune.Runtime()) // returns 'true' when done
+    if (aTune.Runtime())  // returns 'true' when done
     {
       FinishAutoTune();
     }
-  }
-  else // Execute control algorithm
+  } else  // Execute control algorithm
   {
     myPID.Compute();
   }
@@ -400,21 +387,16 @@ void DoControl()
 // ************************************************
 // Called by ISR every 15ms to drive the output
 // ************************************************
-void DriveOutput()
-{
+void DriveOutput() {
   long now = millis();
   // Set the output
   // "on time" is proportional to the PID output
-  if (now - windowStartTime > WindowSize)
-  { //time to shift the Relay Window
+  if (now - windowStartTime > WindowSize) {  // time to shift the Relay Window
     windowStartTime += WindowSize;
   }
-  if ((onTime > 100) && (onTime > (now - windowStartTime)))
-  {
+  if ((onTime > 100) && (onTime > (now - windowStartTime))) {
     digitalWrite(RelayPin, HIGH);
-  }
-  else
-  {
+  } else {
     digitalWrite(RelayPin, LOW);
   }
 }
@@ -423,8 +405,7 @@ void DriveOutput()
 // Start the Auto-Tuning cycle
 // ************************************************
 
-void StartAutoTune()
-{
+void StartAutoTune() {
   // REmember the mode we were in
   ATuneModeRemember = myPID.GetMode();
 
@@ -438,8 +419,7 @@ void StartAutoTune()
 // ************************************************
 // Return to normal control
 // ************************************************
-void FinishAutoTune()
-{
+void FinishAutoTune() {
   tuning = false;
 
   // Extract the auto-tune calculated parameters
@@ -458,22 +438,17 @@ void FinishAutoTune()
 // ************************************************
 // Save any parameter changes to EEPROM
 // ************************************************
-void SaveParameters()
-{
-  if (Setpoint != EEPROM_readDouble(SpAddress))
-  {
+void SaveParameters() {
+  if (Setpoint != EEPROM_readDouble(SpAddress)) {
     EEPROM_writeDouble(SpAddress, Setpoint);
   }
-  if (Kp != EEPROM_readDouble(KpAddress))
-  {
+  if (Kp != EEPROM_readDouble(KpAddress)) {
     EEPROM_writeDouble(KpAddress, Kp);
   }
-  if (Ki != EEPROM_readDouble(KiAddress))
-  {
+  if (Ki != EEPROM_readDouble(KiAddress)) {
     EEPROM_writeDouble(KiAddress, Ki);
   }
-  if (Kd != EEPROM_readDouble(KdAddress))
-  {
+  if (Kd != EEPROM_readDouble(KdAddress)) {
     EEPROM_writeDouble(KdAddress, Kd);
   }
 }
@@ -481,8 +456,7 @@ void SaveParameters()
 // ************************************************
 // Load parameters from EEPROM
 // ************************************************
-void LoadParameters()
-{
+void LoadParameters() {
   // Load from EEPROM
   Setpoint = EEPROM_readDouble(SpAddress);
   Kp = EEPROM_readDouble(KpAddress);
@@ -490,20 +464,16 @@ void LoadParameters()
   Kd = EEPROM_readDouble(KdAddress);
 
   // Use defaults if EEPROM values are invalid
-  if (isnan(Setpoint))
-  {
+  if (isnan(Setpoint)) {
     Setpoint = 60;
   }
-  if (isnan(Kp))
-  {
+  if (isnan(Kp)) {
     Kp = 850;
   }
-  if (isnan(Ki))
-  {
+  if (isnan(Ki)) {
     Ki = 0.5;
   }
-  if (isnan(Kd))
-  {
+  if (isnan(Kd)) {
     Kd = 0.1;
   }
 }
@@ -511,11 +481,9 @@ void LoadParameters()
 // ************************************************
 // Write floating point values to EEPROM
 // ************************************************
-void EEPROM_writeDouble(int address, double value)
-{
+void EEPROM_writeDouble(int address, double value) {
   byte* p = (byte*)(void*)&value;
-  for (int i = 0; i < sizeof(value); i++)
-  {
+  for (int i = 0; i < sizeof(value); i++) {
     EEPROM.write(address++, *p++);
   }
 }
@@ -523,12 +491,10 @@ void EEPROM_writeDouble(int address, double value)
 // ************************************************
 // Read floating point values from EEPROM
 // ************************************************
-double EEPROM_readDouble(int address)
-{
+double EEPROM_readDouble(int address) {
   double value = 0.0;
   byte* p = (byte*)(void*)&value;
-  for (int i = 0; i < sizeof(value); i++)
-  {
+  for (int i = 0; i < sizeof(value); i++) {
     *p++ = EEPROM.read(address++);
   }
   return value;

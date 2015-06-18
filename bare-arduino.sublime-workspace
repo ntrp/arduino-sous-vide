@@ -1,1 +1,1268 @@
-{}
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"re",
+				"reverse"
+			],
+			[
+				"ans",
+				"ansi_clear_line"
+			],
+			[
+				"cl",
+				"clang_cmd"
+			],
+			[
+				"h",
+				"htmlMenu"
+			],
+			[
+				"set",
+				"setpoint"
+			],
+			[
+				"parse",
+				"parseFloat"
+			],
+			[
+				"margin",
+				"margin-top"
+			],
+			[
+				"file",
+				"fileName"
+			],
+			[
+				"wri",
+				"writeToFile"
+			],
+			[
+				"fil",
+				"fileName"
+			],
+			[
+				"con",
+				"console"
+			],
+			[
+				"link",
+				"linkMap"
+			],
+			[
+				"folder",
+				"folders"
+			],
+			[
+				"sta",
+				"startUrl"
+			],
+			[
+				"mo",
+				"modal-body"
+			],
+			[
+				"brow",
+				"browserModal"
+			],
+			[
+				"cooki",
+				"cookieScripts"
+			],
+			[
+				"acp",
+				"acpfile"
+			],
+			[
+				"pa",
+				"padding-right"
+			],
+			[
+				"op",
+				"openScope"
+			],
+			[
+				"varni",
+				"varnishAlfBanService"
+			],
+			[
+				"margin-",
+				"margin-bottom"
+			],
+			[
+				"fr",
+				"fromJson"
+			],
+			[
+				"result",
+				"resultJson"
+			],
+			[
+				"back",
+				"background-color"
+			],
+			[
+				"border",
+				"border-radius"
+			],
+			[
+				"map",
+				"mapType"
+			],
+			[
+				"field",
+				"fieldset	Tag"
+			],
+			[
+				"refr",
+				"refreshNode"
+			],
+			[
+				"build",
+				"build-templates"
+			],
+			[
+				"de",
+				"dest"
+			],
+			[
+				"p",
+				"pipe"
+			],
+			[
+				"d",
+				"dist"
+			],
+			[
+				"s",
+				"src"
+			],
+			[
+				"co",
+				"copy-vendor"
+			],
+			[
+				"bu",
+				"build-app"
+			],
+			[
+				"buil",
+				"build-frontend"
+			],
+			[
+				"sr",
+				"script"
+			],
+			[
+				"new",
+				"newNode"
+			],
+			[
+				"tab",
+				"tabId"
+			],
+			[
+				"mih",
+				"min-width"
+			],
+			[
+				"targ",
+				"targetArea"
+			],
+			[
+				"target",
+				"targetPage"
+			],
+			[
+				"pro",
+				"properties"
+			],
+			[
+				"node",
+				"nodeRef"
+			],
+			[
+				"ref",
+				"refreshedNodes"
+			],
+			[
+				"rfresh",
+				"refreshedNodes"
+			],
+			[
+				"recurse",
+				"recurseRefresh"
+			],
+			[
+				"in",
+				"index"
+			],
+			[
+				"l",
+				"length"
+			],
+			[
+				"Da",
+				"DataService"
+			],
+			[
+				"type",
+				"typeof"
+			],
+			[
+				"bord",
+				"border"
+			],
+			[
+				"CB_",
+				"CB_BASKET_AREA"
+			],
+			[
+				"allowed",
+				"allowedTypes"
+			],
+			[
+				"allo",
+				"allowedTypes"
+			],
+			[
+				"allowe",
+				"allowedTypes"
+			],
+			[
+				"allow",
+				"allowedTypeList"
+			],
+			[
+				"url",
+				"urlObj"
+			],
+			[
+				"font",
+				"font-size"
+			],
+			[
+				"fa-",
+				"fa-remove"
+			],
+			[
+				"app",
+				"appendChild"
+			],
+			[
+				"ng-d",
+				"ng-disabled	AngularJS"
+			],
+			[
+				"ng-switch",
+				"ng-switch-when	AngularJS"
+			],
+			[
+				"tex",
+				"text-align"
+			],
+			[
+				"currentFee",
+				"currentFeedCat"
+			],
+			[
+				"ng-cl",
+				"ng-click	AngularJS"
+			],
+			[
+				"ng-re",
+				"ng-repeat	AngularJS"
+			],
+			[
+				"ng-c",
+				"ng-click	AngularJS"
+			],
+			[
+				"ng-m",
+				"ng-mouseenter	AngularJS"
+			],
+			[
+				"ng",
+				"ng-mousemove	AngularJS"
+			],
+			[
+				"on",
+				"onmouseover	Attr"
+			],
+			[
+				"SOLR",
+				"SOLR_ZK_CLUSTER"
+			],
+			[
+				"ws900",
+				"ws900_1_path"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "bare-arduino.sublime-project",
+			"settings":
+			{
+				"buffer_size": 1195,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "src/main.cpp",
+			"settings":
+			{
+				"buffer_size": 13048,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/home/ntrp/Downloads/SublimeANSI-master/ANSI.tmLanguage",
+			"settings":
+			{
+				"buffer_size": 331,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/home/ntrp/Downloads/SublimeANSI-master/ansi.sublime-settings",
+			"settings":
+			{
+				"buffer_size": 2490,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/home/ntrp/.config/sublime-text-3/Packages/ANSIescape/ansi.py",
+			"settings":
+			{
+				"buffer_size": 5709,
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "Packages/C++/C++ Single File.sublime-build",
+	"build_system_choices":
+	[
+		[
+			[
+				[
+					"Packages/C++/C++ Single File.sublime-build",
+					""
+				],
+				[
+					"Packages/C++/C++ Single File.sublime-build",
+					"Run"
+				],
+				[
+					"Packages/User/latex.sublime-build",
+					""
+				]
+			],
+			[
+				"Packages/C++/C++ Single File.sublime-build",
+				""
+			]
+		]
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 393.0,
+		"last_filter": "reso",
+		"selected_items":
+		[
+			[
+				"reso",
+				"PackageResourceViewer: Open Resource"
+			],
+			[
+				"insta",
+				"Package Control: Install Package"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"rei",
+				"JSON Reindent: reindent file or selection"
+			],
+			[
+				"package resource",
+				"PackageResourceViewer: Open Resource"
+			],
+			[
+				"inst",
+				"Package Control: Install Package"
+			],
+			[
+				"remo",
+				"Package Control: Remove Package"
+			],
+			[
+				"packae",
+				"Package Control: List Packages"
+			],
+			[
+				"c",
+				"Set Syntax: C"
+			],
+			[
+				"ins",
+				"Package Control: Install Package"
+			],
+			[
+				"reid",
+				"Indentation: Reindent Lines"
+			],
+			[
+				"javas",
+				"Set Syntax: JavaScript"
+			],
+			[
+				"xml",
+				"Indent XML"
+			],
+			[
+				"rein",
+				"Indentation: Reindent Lines"
+			],
+			[
+				"java",
+				"Set Syntax: JavaScript"
+			],
+			[
+				"re",
+				"Indentation: Reindent Lines"
+			],
+			[
+				"bea",
+				"HTMLBeautify"
+			],
+			[
+				"html",
+				"Set Syntax: HTML"
+			],
+			[
+				"packa",
+				"Package Control: List Packages"
+			],
+			[
+				"json",
+				"Indent JSON"
+			],
+			[
+				"inde",
+				"Indentation: Reindent Lines"
+			],
+			[
+				"iden",
+				"Indent XML"
+			],
+			[
+				"ind",
+				"Indent XML"
+			],
+			[
+				"i",
+				"Indent XML"
+			],
+			[
+				"id",
+				"Indent JSON"
+			],
+			[
+				"angu",
+				"Set Syntax: HTML (Angular.js)"
+			],
+			[
+				"ide",
+				"Indent JSON"
+			],
+			[
+				"angul",
+				"Set Syntax: HTML (Angular.js)"
+			],
+			[
+				"goog",
+				"Google Spell Check"
+			],
+			[
+				"css",
+				"Set Syntax: CSS"
+			]
+		],
+		"width": 530.0
+	},
+	"console":
+	{
+		"height": 359.0,
+		"history":
+		[
+			"print(r'\\x.')",
+			"print(r'\\x')",
+			"print(r'\\x\\[K')",
+			"r'\\x\\[K'",
+			"run_command(\"asd\")",
+			"view.run_command(\"asd\")",
+			"view.run_command(\"undo_ansi\")",
+			"view.run_command(\"undoansi\")",
+			"view.run_command(\"ansi\")",
+			"sublime.platform()",
+			"import urllib.request,os,hashlib; h = '7183a2d3e96f11eeadd761d777e62404' + 'e330c659d4bb41d3bdf022e94cab3cd0'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/home/ntrp/_PrivateWS/QanticSousVide"
+	],
+	"file_history":
+	[
+		"/home/ntrp/.config/sublime-text-3/Packages/Default/exec.py",
+		"/home/ntrp/_PrivateWS/QanticSousVide/src/main.cpp",
+		"/home/ntrp/.config/sublime-text-3/Packages/ANSIescape/package-metadata.json",
+		"/home/ntrp/.config/sublime-text-3/Packages/ANSIescape/README.md",
+		"/home/ntrp/.config/sublime-text-3/Packages/ANSIescape/ANSI.tmLanguage",
+		"/home/ntrp/.config/sublime-text-3/Packages/ANSIescape/ansi.sublime-settings",
+		"/home/ntrp/.config/sublime-text-3/Packages/User/ANSIescape/ansi.tmTheme",
+		"/home/ntrp/.config/sublime-text-3/Packages/ANSIescape/ansi.py",
+		"/home/ntrp/.config/sublime-text-3/Packages/User/Preferences.sublime-settings",
+		"/home/ntrp/.config/sublime-text-3/Packages/User/Default (Linux).sublime-keymap",
+		"/home/ntrp/.config/sublime-text-3/Packages/ClangAutoComplete/ClangAutoComplete.sublime-settings",
+		"/home/ntrp/.config/sublime-text-3/Packages/ClangAutoComplete/package_control.py",
+		"/home/ntrp/.config/sublime-text-3/Packages/ClangAutoComplete/package-metadata.json",
+		"/home/ntrp/.config/sublime-text-3/Packages/ClangAutoComplete/ClangAutoComplete.py",
+		"/home/ntrp/_PrivateWS/QanticSousVide/bare-arduino.sublime-project",
+		"/home/ntrp/.config/sublime-text-3/Packages/Theme - Default/Widgets.stTheme",
+		"/home/ntrp/.config/sublime-text-3/Packages/Theme - Default/Widget.sublime-settings",
+		"/home/ntrp/.config/sublime-text-3/Packages/Color Scheme - Default/Amy.tmTheme",
+		"/home/ntrp/.config/sublime-text-3/Cache/Theme - Default/Widgets.stTheme.cache",
+		"/home/ntrp/_PrivateWS/QanticSousVide/bare-arduino.sublime-workspace",
+		"/home/ntrp/_PrivateWS/QanticSousVide/src/test.cpp",
+		"/home/ntrp/.config/sublime-text-3/Packages/ClangAutoComplete/README.md",
+		"/home/ntrp/.config/sublime-text-3/Packages/Default/Default (Linux).sublime-keymap",
+		"/home/ntrp/_PrivateWS/QanticSousVide/src/main.h",
+		"/home/ntrp/.config/sublime-text-3/Packages/User/C.sublime-settings",
+		"/home/ntrp/.config/sublime-text-3/Packages/User/C++.sublime-settings",
+		"/home/ntrp/Downloads/MegaMenuPortletController.java",
+		"/home/ntrp/.config/sublime-text-3/Packages/Default/Preferences.sublime-settings",
+		"/home/ntrp/.config/sublime-text-3/Packages/User/Emmet.sublime-settings",
+		"/home/ntrp/.config/sublime-text-3/Packages/User/Package Control.user-ca-bundle",
+		"/home/ntrp/.config/sublime-text-3/Packages/User/Package Control.sublime-settings",
+		"/home/ntrp/.config/sublime-text-3/Packages/User/Package Control.last-run",
+		"/home/ntrp/.config/sublime-text-3/Packages/User/latex.sublime-build",
+		"/home/ntrp/.config/sublime-text-3/Packages/User/clang_format_custom.sublime-settings",
+		"/home/ntrp/.config/sublime-text-3/Packages/User/clang_format.sublime-settings",
+		"/home/ntrp/.config/sublime-text-3/Packages/Clang Format/Default (Linux).sublime-keymap",
+		"/home/ntrp/_PrivateWS/QanticSousVide/README.md",
+		"/home/ntrp/_PrivateWS/QanticSousVide/qantic-sous-vide.sublime-build",
+		"/home/ntrp/_PrivateWS/QanticSousVide/src/Makefile",
+		"/home/ntrp/_PrivateWS/QanticSousVide/Makefile",
+		"/home/ntrp/_PrivateWS/QanticSousVide/src/BarProject/Makefile",
+		"/home/ntrp/_PrivateWS/QanticSousVide/lib/CmdMessenger/CmdMessenger.cpp",
+		"/home/ntrp/_PrivateWS/QanticSousVide/lib/LiquidCrystal_I2C/LiquidCrystal_I2C.h",
+		"/home/ntrp/_PrivateWS/QanticSousVide/lib/PID_v1/PID_v1.h",
+		"/home/ntrp/_PrivateWS/QanticSousVide/lib/OneWire/OneWire.h",
+		"/home/ntrp/_PrivateWS/QanticSousVide/src/BarProject/BarProject.cpp",
+		"/run/user/1000/gvfs/sftp:host=rospo-myp,user=root/opt/900-SOLR_BACK/mysearch/tomcat/conf/context.xml",
+		"/run/user/1000/gvfs/sftp:host=rospo-myp,user=root/opt/900-SOLR/bin/setenv.sh",
+		"/run/user/1000/gvfs/sftp:host=rospo-myp,user=root/opt/900-SOLR_BACK/start-tomcat.sh",
+		"/run/user/1000/gvfs/sftp:host=rospo-myp,user=root/opt/900-SOLR/conf/context.xml",
+		"/run/user/1000/gvfs/sftp:host=rospo-myp,user=root/opt/900-SOLR/conf/server.xml",
+		"/run/user/1000/gvfs/sftp:host=rospo-myp,user=root/opt/900-SOLR_BACK/mysearch/tomcat/conf/server.xml",
+		"/home/ntrp/_WorkWS/myportal/RELEASE_SOLR_MYDIC_FIXES/README.txt",
+		"/home/ntrp/_PrivateWS/SerialNode/serial.js",
+		"/home/ntrp/_PrivateWS/SerialNode/index.html",
+		"/run/user/1000/gvfs/sftp:host=rospo-myp,user=root/opt/900-SOLR/webapps/myProfileServer.war",
+		"/home/ntrp/_PrivateWS/SerialNode/node_modules/node-pid-controller/lib/index.js",
+		"/home/ntrp/_WorkWS/myportal/RELEASE_SOLR_MYDIC_FIXES/SOLR/conf/Catalina/localhost/solr.xml",
+		"/run/user/1000/gvfs/sftp:host=rospo-myp,user=root/opt/900-SOLR/conf/catalina.properties",
+		"/run/user/1000/gvfs/sftp:host=rospo-myp,user=root/opt/900-SOLR/conf/Catalina/localhost/solr.xml",
+		"/home/ntrp/_WorkWS/myportal/RELEASE_SOLR_MYDIC_FIXES/SOLR/bin/setenv.sh",
+		"/home/ntrp/_WorkWS/myportal/RELEASE_SOLR_MYDIC_FIXES/SOLR/solr-home/configsets/myportal/conf/schema.xml",
+		"/home/ntrp/_WorkWS/myportal/RELEASE_SOLR_MYDIC_FIXES/SOLR/solr-home/configsets/myportal/conf/solrconfig.xml",
+		"/home/ntrp/.cache/.fr-QLRiFM/WEB-INF/web.xml",
+		"/home/ntrp/.cache/.fr-uAxX4W/WEB-INF/web.xml",
+		"/home/ntrp/.cache/.fr-ICL6Aq/resources/metadata/metadata.xml",
+		"/home/ntrp/_WorkWS/myportal/RELEASE_SOLR_MYDIC_FIXES/SOLR/solr-home/configsets/myportal/core.properties",
+		"/run/user/1000/gvfs/sftp:host=rospo-myp,user=root/opt/900-SOLR/webapps/solr/WEB-INF/web.xml",
+		"/run/user/1000/gvfs/sftp:host=rospo-myp,user=root/opt/900-SOLR/webapps/solr/WEB-INF/classes/log4j.properties",
+		"/run/user/1000/gvfs/sftp:host=rospo-myp,user=root/opt/900-SOLR_BACK/mysearch/tomcat/conf/catalina.properties",
+		"/run/user/1000/gvfs/sftp:host=rospo-myp,user=root/opt/apache-tomcat-7.0.61/bin/catalina.sh",
+		"/run/user/1000/gvfs/sftp:host=rospo-myp,user=root/opt/apache-tomcat-7.0.62/start-tomcat.sh",
+		"/run/user/1000/gvfs/sftp:host=rospo-myp,user=root/opt/apache-tomcat-7.0.62/bin/setenv.sh",
+		"/run/user/1000/gvfs/sftp:host=rospo-myp,user=root/opt/900-SOLR/shared/classes/log4j.properties",
+		"/run/user/1000/gvfs/sftp:host=rospo-myp,user=root/opt/900-SOLR/webapps/solr/WEB-INF/classes/logging.properties",
+		"/run/user/1000/gvfs/sftp:host=rospo-myp,user=root/opt/apache-tomcat-7.0.62/conf/server.xml",
+		"/run/user/1000/gvfs/sftp:host=rospo-myp,user=root/opt/900-SOLR/mysearch-5/tomcat/conf/server.xml",
+		"/run/user/1000/gvfs/sftp:host=rospo-myp,user=root/opt/900_MYP/apache-tomcat-6.0.24/webapps/alfresco/WEB-INF/classes/alfresco/extension/myp-webscript-context.xml",
+		"/run/user/1000/gvfs/sftp:host=rospo-myp,user=root/opt/900_MYP/apache-tomcat-6.0.24-32R2/webapps/alfresco/WEB-INF/classes/alfresco/extension/content-webscripts-context.xml",
+		"/home/ntrp/_WorkWS/myportal/RELEASE_SOLR_MYDIC_FIXES/DIST/alfresco/_alfresco.war/WEB-INF/classes/alfresco/extension/content-webscripts-context.xml",
+		"/run/user/1000/gvfs/sftp:host=rospo-myp,user=root/opt/900-SOLR/mysearch/tomcat/webapps/mydictionary/WEB-INF/web.xml",
+		"/run/user/1000/gvfs/sftp:host=rospo-myp,user=root/opt/900-SOLR/mysearch/tomcat/webapps/mydictionary/WEB-INF/classes/log4j.properties",
+		"/run/user/1000/gvfs/sftp:host=rospo-myp,user=root/opt/900_MYP/apache-tomcat-6.0.24-32R2/webapps/alfresco/WEB-INF/classes/alfresco/extension/myp-webscript-context.xml",
+		"/run/user/1000/gvfs/sftp:host=rospo-myp,user=root/opt/900-SOLR/mysearch-5/tomcat/conf/context.xml",
+		"/run/user/1000/gvfs/sftp:host=rospo-myp,user=root/opt/apache-tomcat-7.0.62/conf/catalina.policy",
+		"/run/user/1000/gvfs/sftp:host=rospo-myp,user=root/opt/900-SOLR/mysearch-5/tomcat/conf/catalina.properties",
+		"/run/user/1000/gvfs/sftp:host=rospo-myp,user=root/opt/apache-tomcat-7.0.62/conf/Catalina/localhost/solr.xml",
+		"/run/user/1000/gvfs/sftp:host=rospo-myp,user=root/opt/apache-tomcat-7.0.62/webapps/solr/WEB-INF/web.xml",
+		"/run/user/1000/gvfs/sftp:host=rospo-myp,user=root/opt/apache-tomcat-7.0.62/solr-home/solr.xml",
+		"/run/user/1000/gvfs/sftp:host=rospo-myp,user=root/opt/apache-tomcat-7.0.62/solr-home/configsets/myportal/core.properties",
+		"/run/user/1000/gvfs/sftp:host=ssh.remote,port=443,user=root/etc/nginx/sites-enabled/sousvide.vhost",
+		"/run/user/1000/gvfs/sftp:host=ssh.remote,port=443,user=root/etc/nginx/sites-enabled/cevapi.homenet.org.vhost",
+		"/run/user/1000/gvfs/sftp:host=rospo-myp,user=root/opt/900_MYP/apache-tomcat-6.0.24/shared/classes/alfresco/extension/scheduled-action-services-context.xml",
+		"/run/user/1000/gvfs/sftp:host=rospo-myp,user=root/opt/900_MYP/apache-tomcat-6.0.24-32R2/webapps/alfresco/WEB-INF/classes/alfresco/alfresco-rve-model-bootstrap-context.xml",
+		"/run/user/1000/gvfs/sftp:host=rospo-myp,user=root/opt/900_MYP/apache-tomcat-6.0.24-32R2/webapps/alfresco/WEB-INF/classes/alfresco/extension/custom-web-context.xml",
+		"/run/user/1000/gvfs/sftp:host=rospo-myp,user=root/opt/900_MYP/apache-tomcat-6.0.24-32R2/shared/classes/alfresco/extension/scheduled-action-services-context.xml",
+		"/home/ntrp/_WorkWS/mydictionary/mydictionary-web/target/mydictionary/WEB-INF/web.xml",
+		"/home/ntrp/_WorkWS/myportal/Release/dist_stage/alfresco/_tomcat/shared/classes/alfresco-global.properties",
+		"/run/user/1000/gvfs/sftp:host=rospo-myp,user=root/opt/900_MYP/apache-tomcat-6.0.24-32R2/shared/classes/alfresco-global.properties",
+		"/home/ntrp/.cache/.fr-91sxVh/Log4jAndSpringMVC/src/main/webapp/WEB-INF/mvc-dispatcher-servlet.xml",
+		"/home/ntrp/.cache/.fr-91rsV9/Log4jAndSpringMVC/src/main/webapp/WEB-INF/web.xml",
+		"/home/ntrp/.cache/.fr-vVx625/Log4jAndSpringMVC/src/main/webapp/WEB-INF/mvc-dispatcher-servlet.xml",
+		"/home/ntrp/.cache/.fr-zaPVBc/Log4jAndSpringMVC/src/main/webapp/WEB-INF/mvc-dispatcher-servlet.xml",
+		"/run/user/1000/gvfs/sftp:host=rospo-myp,user=root/opt/900-SOLR/mysearch-5/solr-home/zoo.cfg",
+		"/run/user/1000/gvfs/sftp:host=rospo-myp,user=root/opt/900_MYP/apache-tomcat-6.0.24/shared/classes/alfresco-global.properties",
+		"/run/user/1000/gvfs/sftp:host=rospo-myp,user=root/opt/900_MYP/apache-tomcat-6.0.24-32R2/webapps/alfresco/WEB-INF/classes/mypconfiguration.properties",
+		"/run/user/1000/gvfs/sftp:host=rospo-myp,user=root/opt/900_MYP/jboss-5.1.0.GA-liferay523/server/default/deploy/crud-contentbrowser.war/WEB-INF/web.xml",
+		"/run/user/1000/gvfs/sftp:host=rospo-myp,user=root/opt/900_MYP/apache-tomcat-6.0.24/webapps/alfresco/WEB-INF/classes/alfresco/extension/custom-web-context.xml",
+		"/run/user/1000/gvfs/sftp:host=rospo-myp,user=root/opt/900_MYP/apache-tomcat-6.0.24/webapps/alfresco/WEB-INF/classes/alfresco/alfresco-rve-model-bootstrap-context.xml",
+		"/run/user/1000/gvfs/sftp:host=rospo-myp,user=root/opt/900_MYP/apache-tomcat-6.0.24/webapps/alfresco/WEB-INF/classes/mypconfiguration.properties",
+		"/home/ntrp/.cache/.fr-VUliwF/WEB-INF/web.xml",
+		"/home/ntrp/.cache/.fr-UzXqMW/groups/13502/portlets/ALFRESCO_MYPORTAL_CONTENT_PROXY_WAR_myportalportlet_INSTANCE_1cTG/preferences/layout/0/13513/portlet-preferences.xml",
+		"/home/ntrp/_WorkWS/myportal/900_2_git/altro/Installer/Template/EnteBase/EnteBase-Public.lar_FILES/manifest.xml",
+		"/home/ntrp/_WorkWS/myportal/900_2_git/altro/Installer/Template/EnteBase/EnteBase-Public.lar_FILES/groups/13502/portlets/ALFRESCO_CONTENT_PRINT_DETAIL_PROXY_WAR_myportalportlet_INSTANCE_c6uM/preferences/layout/0/13519/portlet-preferences.xml",
+		"/home/ntrp/_WorkWS/myportal/900_2_git/altro/Installer/Template/EnteBase/EnteBase-Public.lar_FILES/groups/13502/portlets/ALFRESCO_MYPORTAL_CONTENT_PROXY_WAR_myportalportlet_INSTANCE_0tBP/preferences/layout/0/13552/portlet-preferences.xml",
+		"/home/ntrp/_WorkWS/myportal/900_2_git/altro/Installer/Template/EnteBase/EnteBase-Public.lar_FILES/groups/13502/portlets/ALFRESCO_MYPORTAL_CONTENT_PROXY_WAR_myportalportlet_INSTANCE_1cTG/preferences/layout/0/13513/portlet-preferences.xml",
+		"/home/ntrp/_WorkWS/myportal/900_2_git/altro/Installer/Template/EnteBase/EnteBase-Public.lar_FILES/groups/13502/portlets/ALFRESCO_MYPORTAL_CONTENT_PROXY_WAR_myportalportlet_INSTANCE_1cTG/preferences/layout/0/13514/portlet-preferences.xml",
+		"/home/ntrp/_WorkWS/myportal/900_2_git/altro/Installer/Template/EnteBase/EnteBase-Public.lar_FILES/groups/13502/portlets/ALFRESCO_MYPORTAL_CONTENT_PROXY_WAR_myportalportlet_INSTANCE_1cTG/preferences/layout/0/13516/portlet-preferences.xml",
+		"/home/ntrp/_WorkWS/myportal/900_2_git/altro/Installer/Template/EnteBase/EnteBase-Public.lar_FILES/groups/13502/portlets/ALFRESCO_MYPORTAL_CONTENT_PROXY_WAR_myportalportlet_INSTANCE_1cTG/preferences/layout/0/13517/portlet-preferences.xml",
+		"/home/ntrp/_WorkWS/myportal/900_2_git/altro/Installer/Template/EnteBase/EnteBase-Public.lar_FILES/groups/13502/portlets/ALFRESCO_MYPORTAL_CONTENT_PROXY_WAR_myportalportlet_INSTANCE_1cTG/preferences/layout/0/13518/portlet-preferences.xml",
+		"/home/ntrp/_WorkWS/myportal/900_2_git/altro/Installer/Template/EnteBase/EnteBase-Public.lar_FILES/groups/13502/portlets/ALFRESCO_MYPORTAL_CONTENT_PROXY_WAR_myportalportlet_INSTANCE_1cTG/preferences/layout/0/13549/portlet-preferences.xml",
+		"/home/ntrp/_WorkWS/myportal/900_2_git/altro/Installer/Template/EnteBase/EnteBase-Public.lar_FILES/groups/13502/portlets/ALFRESCO_MYPORTAL_CONTENT_PROXY_WAR_myportalportlet_INSTANCE_36Jv/preferences/layout/0/13552/portlet-preferences.xml",
+		"/home/ntrp/_WorkWS/myportal/900_2_git/altro/Installer/Template/EnteBase/EnteBase-Public.lar_FILES/groups/13502/portlets/ALFRESCO_MYPORTAL_CONTENT_PROXY_WAR_myportalportlet_INSTANCE_3mQc/preferences/layout/0/13540/portlet-preferences.xml",
+		"/home/ntrp/_WorkWS/myportal/900_2_git/altro/Installer/Template/EnteBase/EnteBase-Public.lar_FILES/groups/13502/portlets/ALFRESCO_MYPORTAL_CONTENT_PROXY_WAR_myportalportlet_INSTANCE_3mQc/preferences/layout/0/13544/portlet-preferences.xml",
+		"/home/ntrp/_WorkWS/myportal/900_2_git/altro/Installer/Template/EnteBase/EnteBase-Public.lar_FILES/groups/13502/portlets/ALFRESCO_MYPORTAL_CONTENT_PROXY_WAR_myportalportlet_INSTANCE_3mQc/preferences/layout/0/13545/portlet-preferences.xml",
+		"/home/ntrp/_WorkWS/myportal/900_2_git/altro/Installer/Template/EnteBase/EnteBase-Public.lar_FILES/groups/13502/portlets/ALFRESCO_MYPORTAL_CONTENT_PROXY_WAR_myportalportlet_INSTANCE_3mQc/preferences/layout/0/13546/portlet-preferences.xml",
+		"/home/ntrp/_WorkWS/myportal/900_2_git/altro/Installer/Template/EnteBase/EnteBase-Public.lar_FILES/groups/13502/portlets/ALFRESCO_MYPORTAL_CONTENT_PROXY_WAR_myportalportlet_INSTANCE_3mQc/preferences/layout/0/13547/portlet-preferences.xml",
+		"/home/ntrp/_WorkWS/myportal/900_2_git/altro/Installer/Template/EnteBase/EnteBase-Public.lar_FILES/groups/13502/portlets/ALFRESCO_MYPORTAL_CONTENT_PROXY_WAR_myportalportlet_INSTANCE_49Wn/preferences/layout/0/13557/portlet-preferences.xml"
+	],
+	"find":
+	{
+		"height": 34.0
+	},
+	"find_in_files":
+	{
+		"height": 172.0,
+		"where_history":
+		[
+			"/home/ntrp/_WorkWS/myportal/900_2_git/altro/Installer/Template/EnteBase/EnteBase-Public.lar_FILES",
+			"/home/ntrp/Downloads",
+			"/home/ntrp/Downloads/Sossano-201506111409.lar_FILES",
+			"/home/ntrp/Downloads/PojanaMaggiore-201506111409.lar_FILES",
+			"/home/ntrp/Downloads/Orgiano-201506111408.lar_FILES",
+			"/home/ntrp/Downloads/MontecchioPrecalcino-201506111407.lar_FILES",
+			"/home/ntrp/Downloads/ESUVenezia-201506111356.lar_FILES",
+			"/home/ntrp/Downloads/ESUVenezia-Public.lar_FILES",
+			"<open folders>",
+			"/home/ntrp/_PrivateWS/ClimavenetaDEMO",
+			"/run/user/1000/gvfs/sftp:host=10.6.196.113,user=ennova/home/ennova/Script/src",
+			"<open folders>",
+			"/home/ntrp/_PrivateWS/Marlin/Marlin",
+			"/home/ntrp/_PrivateWS/Marlin",
+			"/srv/http/domains",
+			"/srv/http/domains/prestashopAkera",
+			"/home/ntrp/sketchbook/libraries",
+			"/home/ntrp/sketchbook/libraries/LiquidCrystal_I2C",
+			"/home/ntrp/_Env/spagic-as-3.5.0",
+			"/home/ntrp/_Env/spagic-as-3.5.0/conf"
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"auto_com",
+			"auto",
+			"option",
+			"-I",
+			"/home/ntrp/_WorkWS/myportal/RELEASE_SOLR_MYDIC_FIXES/",
+			"0",
+			"d.close",
+			"d.date",
+			"close",
+			"	\n	<bean id=\"rveExportToIndexAction\"\n		class=\"it.regioneveneto.action.ExportToIndexAction\"\n		parent=\"action-executer\">\n		<property name=\"nodeService\" ref=\"NodeService\" />\n		<property name=\"exporterService\" ref=\"exporterComponent\" />	\n		<property name=\"searchService\" ref=\"SearchService\" />\n		<property name=\"exportToIndexUtils\" ref=\"exportToIndexUtils\" />		\n	</bean>",
+			"<preference>\n		<name>cached</name>\n		<value>false</value>",
+			"parseDate",
+			"data",
+			"	\n",
+			"_exec",
+			"has_",
+			"videos",
+			"download_video",
+			"ffmpeg",
+			"export ",
+			"pid",
+			"<name>cached</name>\n		<value>false</value>",
+			"<name>cached</name>",
+			"<name>cached</name>[\\s\\S]+?[^<][\\s\\S]+?<value>false",
+			"<name>cached</name>[\\s\\S]+?<value>false",
+			"<name>cached</name>\n		<value>false</value>",
+			"revisions.txt",
+			"log",
+			"\n    	",
+			"exportEve",
+			"4760a790-dc42-4e31-9cb8-c0c6f4891cb4",
+			"ExportEventP",
+			"ademo",
+			"ADemo",
+			"ademo",
+			"feltre",
+			"h2",
+			"col-sm-8",
+			"col-sm-4",
+			"path",
+			"Path",
+			"path",
+			"store",
+			"Store",
+			"store",
+			"uuidBinding",
+			"toUser",
+			"fromUser",
+			"styleRadio",
+			"radio",
+			"id=\"optionsRadios\\d\" ",
+			"optionsRadios",
+			"optionsRadios1",
+			"optionsRadios",
+			"Modes",
+			"isEditMode",
+			"commit",
+			"extract",
+			"lib",
+			"extract",
+			"/update/extract",
+			"exportToIndexUtils",
+			"exportToIndexUtils\n",
+			"jpda",
+			"text",
+			"url",
+			"title",
+			"last_modifi",
+			"rve:",
+			"rve",
+			"content_stream",
+			"/../climaveneta-demo",
+			">\n",
+			"\\t* *$",
+			"\\t*$",
+			"\\t*\\s*$",
+			"\\t+\\s+$",
+			"\\t+$",
+			"\\n.*<property name=\"nodeService\" ref=\"NodeService\" />",
+			".*<property name=\"nodeService\" ref=\"NodeService\" />",
+			"<property name=\"nodeService\" ref=\"NodeService\" />\\n",
+			"<property name=\"nodeService\" ref=\"NodeService\" />",
+			"Properties\"",
+			"ban",
+			"varnishAlfBanService",
+			"solrMypService",
+			"request",
+			"post",
+			"&",
+			"form-control",
+			">\n",
+			"'';\n",
+			"				\n",
+			"recurseGet",
+			"mysqlDataSource",
+			"all",
+			"extract",
+			"copyField",
+			"text\"",
+			"text",
+			"DirectUpdateHandler2",
+			"basket",
+			"convert",
+			", ",
+			"getChildren",
+			"force",
+			"enterA",
+			"getAllowedTypes",
+			"contentbrowserRuleService",
+			"restExecuter",
+			"/home/ntrp/_WorkWS/myportal/Release/dist_stage/",
+			"900_2",
+			"900_1",
+			" 3:3",
+			"3:3",
+			"java.lang.ArrayIndexOutOfBoundsException",
+			"size=\"4\" ",
+			"climaveneta.akera.it.climavenetademo",
+			"climaveneta-demo",
+			"label",
+			"Long",
+			">\n",
+			"div",
+			"RW",
+			"02",
+			"\\n$",
+			"Canda|Gosaldo|Pressana|SanBellino|Castelguglielmo|Ceregnano|CMAlpago|Rovigo|ProvRO|PortoTolle|FiessoUmbertiano|Rosolina|Adria|Villadose|VillanovaMarchesana|AlanoPiave|Alleghe|Arcade|Asiago|AsiglianoVeneto|BagnoloPo|Belluno|BIM|BorcaCadore|CanaleAgordo|Carbonera|Castellavazzo|CazzanoTramigna|CencenigheAgordino|CerroVeronese|Cesiomaggiore|CibianaCadore|ColleSantaLucia|ColognaVeneta|Conco|Corbola|CostaRovigo|CrocettaMontello|DomeggeCadore|FaraVicentino|Gambellara|LaValleAgordina|Lentiai|Limana|Livinallongo|LorenzagoCadore|LozzoCadore|Lusiana|Mel|MontebelloVicentino|MottaLivenza|OspitaleCadore|PadernoGrappa|Pedavena|PeraroloCadore|PieveAlpago|PieveCadore|PoveGrappa|PuosAlpago|Quero|RivamonteAgordino|RoccaPietore|RoveredoGua|SanBiagioCallalta|SanGregorioAlpi|SanNazario|SantaGiustina|SanTomasoAgordino|SanVitoCadore|Schiavon|Sedico|SelvaCadore|SerenGrappa|Sospirolo|Spresiano|TaibonAgordino|Tambre|Tregnago|Trichiana|ValladaAgordina|Vas|Veronella|VigoCadore|VoltagoAgordino|Zenson|ZoldoAlto|ZoppeCadore|CMAgordina|Feltre|CortinaAmpezzo|Agordo|Arsie|Asolo|Bressanvido",
+			"\\n"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": true,
+		"replace_history":
+		[
+			"\\n-I",
+			"",
+			"d.temp",
+			"d.time",
+			"<preference>\n		<name>cached</name>\n		<value>true</value>",
+			"",
+			"<name>cached</name>\n		<value>true</value>",
+			"",
+			"Properties\" parent=\"nodeIndexProperties\"",
+			"\\n",
+			"",
+			"900_2_git",
+			"900_1_git",
+			"",
+			"it.akera.climaveneta.demo",
+			"Lng",
+			"CDN",
+			"RO",
+			"RW",
+			"",
+			"|",
+			"",
+			"cookie",
+			"",
+			"\\n&",
+			"&\\n",
+			"",
+			"nodeRef",
+			"glyphicon glyphicon-tree-deciduous",
+			"private String $1;",
+			"$1",
+			"$1\\n",
+			"!isIE([8, 9])",
+			"isIE([8, 9])",
+			"isIE([8, 9]);",
+			"isIE() == 8 || isIE() == 9",
+			"!(isIE() < 10)",
+			"mouseup",
+			"fa-check",
+			"'alert-danger'",
+			"'alert-success'",
+			"MyDynamo ",
+			"\"$1\": \"$2\",",
+			"Arduino.h",
+			"\\\"",
+			"$1,",
+			"$1, $2, $3, $4, $5, $6",
+			"[$1]",
+			"setterTypes",
+			"{\n  \"code\" : \"$1\",\n  \"label\" : \"$5\",\n  \"type\" : \"$2\",\n  \"getter\" : \"$3\",\n  \"setter\" : \"$4\",\n  \"options\" : [$6],\n  \"init\" : \"\"\n},",
+			"/opt/900-MYP/solr-4.8.1",
+			"/opt/900-MYP/apache-solr-3.6.0",
+			"it.regioneveneto.mydynamo.alfresco",
+			"ZK_DATA_DIR",
+			"ZK_DEST_DIR",
+			"NI",
+			"$1",
+			"entry ",
+			"-",
+			"<entry key=\"$2\" value=\"$1\" />",
+			"-",
+			"$1",
+			"-",
+			"-$1",
+			"$1",
+			"key=\"m",
+			"key=\"$1-$2\"",
+			"<entry key=\"$1\" value=\"$1\" />",
+			"<entry key=\"\" value=\"$1\" />",
+			"goto 65",
+			"goto 100",
+			"clean install",
+			"it_IT.utf8"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 4,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "bare-arduino.sublime-project",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1195,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1087,
+								1087
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JSON.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "src/main.cpp",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 13048,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								959,
+								959
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/C++/C++.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "/home/ntrp/Downloads/SublimeANSI-master/ANSI.tmLanguage",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 331,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/XML/XML.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "/home/ntrp/Downloads/SublimeANSI-master/ansi.sublime-settings",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2490,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JSON.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "/home/ntrp/.config/sublime-text-3/Packages/ANSIescape/ansi.py",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 5709,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								821,
+								821
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 20.0
+	},
+	"input":
+	{
+		"height": 28.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.exec":
+	{
+		"height": 217.0
+	},
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "Make",
+	"project": "bare-arduino.sublime-project",
+	"replace":
+	{
+		"height": 62.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"sty",
+				"eaas/src/frontend/css/style.styl"
+			],
+			[
+				"gulp",
+				"gulpfile.js"
+			],
+			[
+				"fron",
+				"src/frontend/js/frontend.js"
+			],
+			[
+				"index",
+				"WEB-INF/jsp/index.jsp"
+			],
+			[
+				"app",
+				"js/app/cb-app.js"
+			],
+			[
+				"inde",
+				"WEB-INF/jsp/index.jsp"
+			],
+			[
+				"model",
+				"js/app/cb-model.js"
+			],
+			[
+				"entry",
+				"js/app/cb-entrypoint.js"
+			],
+			[
+				"comp",
+				"js/app/cb-component.js"
+			],
+			[
+				"conte",
+				"css/contentbrowser-bs.css"
+			],
+			[
+				"dire",
+				"js/app/cb-directive.js"
+			],
+			[
+				"plug",
+				"js/app/cb-plugins.js"
+			],
+			[
+				"ser",
+				"js/app/cb-service.js"
+			],
+			[
+				"serv",
+				"js/app/cb-service.js"
+			],
+			[
+				"pl",
+				"js/app/cb-plugins.js"
+			],
+			[
+				"cbplu",
+				"js/app/cb-plugins.js"
+			],
+			[
+				"servi",
+				"js/app/cb-service.js"
+			],
+			[
+				"gul",
+				"eaas-plugin/gulpfile.js"
+			],
+			[
+				"ifr",
+				"js/app/iframe-transport.js"
+			],
+			[
+				"ind",
+				"WEB-INF/jsp/index.jsp"
+			],
+			[
+				"plu",
+				"js/app/cb-plugins.js"
+			],
+			[
+				"con",
+				"css/contentbrowser-bs.css"
+			],
+			[
+				"cb",
+				"css/contentbrowser-bs.css"
+			],
+			[
+				"impo",
+				"WEB-INF/jsp/import_css.jsp"
+			],
+			[
+				"mode",
+				"js/app/cb-model.js"
+			],
+			[
+				"com",
+				"js/app/cb-component.js"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 501.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"",
+				"~/_WorkWS/myportal/curd-contentbrowser.sublime-project"
+			]
+		],
+		"width": 381.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+		"xdebug":
+		{
+			"hide_conflict": false
+		}
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 315.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}
