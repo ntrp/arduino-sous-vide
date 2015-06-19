@@ -51,8 +51,7 @@ namespace CommandMessenger.Transport.Serial
 
         public SerialTransport()
         {
-            _worker = new AsyncWorker(Poll);
-			_worker.Name = "SerialTransport";
+            _worker = new AsyncWorker(Poll, "SerialTransport");
         }
 
         private bool Poll()
@@ -238,7 +237,7 @@ namespace CommandMessenger.Transport.Serial
             if (disposing)
             {
                 Disconnect();
-                _serialPort.Dispose();
+                if (_serialPort != null) _serialPort.Dispose();
             }
         }
     }

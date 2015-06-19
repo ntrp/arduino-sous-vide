@@ -1,13 +1,8 @@
 //-------------------------------------------------------------------
 //
 // Sous Vide Controller
-// Bill Earl - for Adafruit Industries
 //
-// Based on the Arduino PID and PID AutoTune Libraries
-// by Brett Beauregard
 //------------------------------------------------------------------
-
-#include "main.h"
 
 // PID Library
 #include <PID_v1.h>
@@ -30,18 +25,8 @@
 // So we can save and retrieve settings
 #include <EEPROM.h>
 
-// ************************************************
-// Pin definitions
-// ************************************************
-
-// Output Relayasd
-#define RelayPin 10
-
-// One-Wire Temperature Sensor
-// (Use GPIO pins for power/ground to simplify the wiring)
-#define ONE_WIRE_BUS 2
-#define ONE_WIRE_PWR 3
-#define ONE_WIRE_GND 4
+#include "main.h"
+#include "comunication.h"
 
 // ************************************************
 // PID Variables and constants
@@ -52,28 +37,24 @@ double Setpoint;
 double Input;
 double Output;
 
-volatile long onTime = 0;
-
 // pid tuning parameters
 double Kp;
 double Ki;
 double Kd;
 
-// RX message options
-#define RX_MAX_LENGTH 8
-#define RX_TERMINATOR 13
+volatile long onTime = 0;
 
 // EEPROM addresses for persisted data
-const int SpAddress = 0;
-const int KpAddress = 8;
-const int KiAddress = 16;
-const int KdAddress = 24;
+const int kSpAddress = 0;
+const int kKpAddress = 8;
+const int kKiAddress = 16;
+const int kKdAddress = 24;
 
 // Specify the links and initial tuning parameters
 PID myPID(&Input, &Output, &Setpoint, Kp, Ki, Kd, DIRECT);
 
 // 10 second Time Proportional Output window
-int WindowSize = 10000;
+int kWindowSize = 10000;
 unsigned long windowStartTime;
 
 // ************************************************
@@ -81,9 +62,9 @@ unsigned long windowStartTime;
 // ************************************************
 byte ATuneModeRemember = 2;
 
-double aTuneStep = 500;
-double aTuneNoise = 1;
-unsigned int aTuneLookBack = 20;
+double kATuneStep = 500;
+double kATuneNoise = 1;
+unsigned int kATuneLookBack = 20;
 
 boolean tuning = false;
 
@@ -112,91 +93,55 @@ operatingState opState = OFF;
 // Data wire is plugged into port 2 on the Arduino
 
 // Setup a oneWire instance to communicate with any OneWire devices (not just
-// Maxim/Dallas temperature ICs)
+// Maxim/Dallas temperature ICs) and pass our oneWire reference to Dallas
+// Temperature.
 OneWire oneWire(ONE_WIRE_BUS);
-
-// Pass our oneWire reference to Dallas Temperature.
 DallasTemperature sensors(&oneWire);
+DeviceAddress tempSensor;  // arrays to hold device address
 
-// arrays to hold device address
-DeviceAddress tempSensor;
+// Software Serial interface
+SoftwareSerial sSerial(SOFTWARE_SERIAL_RX, SOFTWARE_SERIAL_TX);
 
-SoftwareSerial sSerial(12, 13);
-
-char field_separator = ',';
-char command_separator = ';';
-
+// Command Messenger for command interface
 CmdMessenger cmdMessenger =
-    CmdMessenger(sSerial, field_separator, command_separator);
+    CmdMessenger(sSerial, FIELD_SEPARATOR, COMMAND_SEPARATOR);
 
-enum {
-  kCOMM_ERROR = 000,  // Lets Arduino report serial port comm error back to the
-                      // PC (only works for some comm errors)
-  kACK = 001,         // Arduino acknowledges cmd was received
-  kARDUINO_READY = 002,  // After opening the comm port, send this cmd 02 from
-                         // PC to check arduino is ready
-  kERR = 003,  // Arduino reports badly formatted cmd, or cmd not recognised
-
-  // Now we can define many more 'send' commands, coming from the arduino -> the
-  // PC, eg
-  // kICE_CREAM_READY,
-  // kICE_CREAM_PRICE,
-  // For the above commands, we just call cmdMessenger.sendCmd() anywhere we
-  // want in our Arduino program.
-
-  kGET_TEMP = 004,
-  kRUN = 005,
-
-  kSEND_CMDS_END,  // Mustnt delete this line
-};
-
-void get_temp() {
-  // In response to ping. We just send a throw-away Acknowledgement to say "im
-  // alive"
-  sensors.requestTemperatures();
-  cmdMessenger.sendCmd(kACK, String(sensors.getTempC(tempSensor)));
-}
-
-void system_run() {
-  lcd.print(F("Sp: "));
-  lcd.print(Setpoint);
-  lcd.write(1);
-  lcd.print(F("C : "));
-
-  SaveParameters();
-  myPID.SetTunings(Kp, Ki, Kd);
-
-  opState = RUN;
+void ConfigureCmdMessenger() {
+  cmdMessenger.printLfCr();
+  cmdMessenger.attach(kARDUINO_READY, SystemReady);
+  cmdMessenger.attach(kRUN, SystemRun);
+  cmdMessenger.attach(kOFF, SystemOff);
+  cmdMessenger.attach(kSET_KP, SystemSetKp);
+  cmdMessenger.attach(kSET_KD, SystemSetKd);
+  cmdMessenger.attach(kSET_KI, SystemSetKi);
+  cmdMessenger.attach(kSET_SP, SystemSetSetpoint);
+  cmdMessenger.attach(UnknownCmd);
 }
 
 // ************************************************
 // Setup and diSplay initial screen
 // ************************************************
 void setup() {
+  // Setup serial interfaces
   Serial.begin(9600);
   sSerial.begin(115200);
 
   // Initialize Relay Control:
-
-  pinMode(RelayPin, OUTPUT);    // Output mode to drive relay
-  digitalWrite(RelayPin, LOW);  // make sure it is off to start
+  pinMode(RELAY_PIN, OUTPUT);    // Output mode to drive relay
+  digitalWrite(RELAY_PIN, LOW);  // make sure it is off to start
 
   // Set up Ground & Power for the sensor from GPIO pins
-
   pinMode(ONE_WIRE_GND, OUTPUT);
   digitalWrite(ONE_WIRE_GND, LOW);
-
   pinMode(ONE_WIRE_PWR, OUTPUT);
   digitalWrite(ONE_WIRE_PWR, HIGH);
 
-  cmdMessenger.printLfCr();
-  cmdMessenger.attach(kGET_TEMP, get_temp);
-  cmdMessenger.attach(kRUN, system_run);
+  // Configure CmdMessenger callbacks
+  ConfigureCmdMessenger();
 
   // Initialize LCD DiSplay
-
   lcd.begin();
-  lcd.createChar(1, degree);  // create degree symbol from the binary
+  lcd.createChar(0, degree);  // create degree symbol from the binary
   lcd.backlight();
 
   lcd.clear();
@@ -205,23 +150,24 @@ void setup() {
   lcd.print(F("   Sous Vide!"));
 
   // Start up the DS18B20 One Wire Temperature Sensor
-
   sensors.begin();
   if (!sensors.getAddress(tempSensor, 0)) {
     lcd.setCursor(0, 1);
     lcd.print(F("Sensor Error"));
   }
   sensors.setResolution(tempSensor, 12);
-  // sensors.setWaitForConversion(false);
+  sensors.setWaitForConversion(false);
+  Input = sensors.getTempC(tempSensor);
 
   delay(3000);  // Splash screen
+  lcd.clear();
 
   // Initialize the PID and related variables
   LoadParameters();
   myPID.SetTunings(Kp, Ki, Kd);
 
   myPID.SetSampleTime(1000);
-  myPID.SetOutputLimits(0, WindowSize);
+  myPID.SetOutputLimits(0, kWindowSize);
 
   // Run timer2 interrupt every 15 ms
   TCCR2A = 0;
@@ -236,7 +182,7 @@ void setup() {
 // ************************************************
 SIGNAL(TIMER2_OVF_vect) {
   if (opState == OFF) {
-    digitalWrite(RelayPin, LOW);  // make sure relay is off
+    digitalWrite(RELAY_PIN, LOW);  // make sure relay is off
   } else {
     DriveOutput();
   }
@@ -248,135 +194,136 @@ SIGNAL(TIMER2_OVF_vect) {
 // All state changes pass through here
 // ************************************************
 void loop() {
-  if (opState == RUN) {
-    DoControl();
-
-    lcd.setCursor(0, 1);
-    lcd.print(Input);
-    lcd.write(1);
-    lcd.print(F("C : "));
-
-    float pct = map(Output, 0, WindowSize, 0, 1000);
-    lcd.setCursor(10, 1);
-    lcd.print(F("      "));
-    lcd.setCursor(10, 1);
-    lcd.print(pct / 10);
-    // lcd.print(Output);
-    lcd.print("%");
-
-    // periodically log to serial port in csv format
-    if (millis() - lastLogTime > logInterval) {
-      Serial.print(Input);
-      Serial.print(",");
-      Serial.println(Output);
-    }
-  }
-
-  delay(100);
+  // read sent commands
   cmdMessenger.feedinSerialData();
-}
 
-/*
-void test() {
-
-  char rxString[RX_MAX_LENGTH + 1];
-  char* rxParameter;
-  byte rxByteItr = 0;
-
-  while (Serial.available() && rxString[rxByteItr] != 13 && ++rxByteItr <
-RX_MAX_LENGTH) {
-    rxString[rxByteItr] = Serial.read();
-  }
-
-  if (rxByteItr > 0) {
-    rxString[rxByteItr] = '\0';
-    rxParameter = rxString + 1;
-    Serial.println(rxString[0]);
-    switch (rxString[0]) {
-      case 'OFF':
-        Off();
-        opState = OFF;
-        break;
-      case 'SETP':
-        Setpoint = atof(rxParameter);
-        txLine("Setpoint set to '" + String(rxParameter) + "'");
-        break;
-      case 'RUN':
-        lcd.print(F("Sp: "));
-        lcd.print(Setpoint);
-        lcd.write(1);
-        lcd.print(F("C : "));
-
-        SaveParameters();
-        myPID.SetTunings(Kp, Ki, Kd);
-
-        opState = RUN;
-        break;
-      case 'TUNE_P':
-        Kp = atof(rxParameter);
-        txLine("Kp set to '" + String(rxParameter) + "'");
-        break;
-      case 'TUNE_I':
-        Ki = atof(rxParameter);
-        txLine("Ki set to '" + String(rxParameter) + "'");
-        break;
-      case 'TUNE_D':
-        Kd = atof(rxParameter);
-        txLine("Kd set to '" + String(rxParameter) + "'");
-        break;
-      case 'SAVE_PID':
-        SaveParameters();
-        txLine("PID parameters persisted");
-        break;
-      default:
-        txLine("Usage:");
-        txLine("OFF - Stop the controller");
-        txLine("RUN - Start the controller");
-        txLine("SETP # - Set target temperature in C°");
-        txLine("TUNE_P # - Set proportional PID parameter");
-        txLine("TUNE_I # - Set integral PID parameter");
-        txLine("TUNE_D # - Set derivative PID parameter");
-        txLine("SAVE_PID - Persist PID configuration parameters");
-    }
-  }
-}
-
-void txLine(String str) {
-  Serial.println(str);
-}
-*/
-
-// ************************************************
-// Initial State - press RIGHT to enter setpoint
-// ************************************************
-void Off() {
-  myPID.SetMode(MANUAL);
-  lcd.noBacklight();
-  digitalWrite(RelayPin, LOW);  // make sure it is off
-  lcd.print(F("    Qantic"));
-  lcd.setCursor(0, 1);
-  lcd.print(F("   Sous Vide!"));
-}
-
-// ************************************************
-// Execute the control loop
-// ************************************************
-void DoControl() {
   // Read the input:
   if (sensors.isConversionAvailable(0)) {
     Input = sensors.getTempC(tempSensor);
     sensors.requestTemperatures();  // prime the pump for the next one - but
                                     // don't wait
   }
+  // state
+  lcd.setCursor(0, 0);
+  switch (opState) {
+    case RUN:
+      lcd.print("> Running! ");
+      break;
+    case OFF:
+      lcd.print("> IDLE     ");
+      break;
+  }
+  // Temp
+  lcd.setCursor(0, 2);
+  lcd.print("T: ");
+  lcd.print(Input);
+  lcd.print(" ");
+  lcd.write(0);
+  lcd.print(F("C"));
+  // Setpoint
+  lcd.setCursor(13, 2);
+  lcd.print("[" + String(Setpoint) + "]");
 
-  if (tuning)  // run the auto-tuner
-  {
-    if (aTune.Runtime())  // returns 'true' when done
-    {
+  float pct = map(Output, 0, kWindowSize, 0, 1000);
+  lcd.setCursor(0, 3);
+  lcd.print("P: ");
+  lcd.print(pct / 10);
+  // lcd.print(Output);
+  lcd.print("%");
+
+  // periodically log to serial port in csv format
+  if (millis() - lastLogTime > logInterval) {
+    cmdMessenger.sendCmdStart(kUPDATE);
+    cmdMessenger.sendCmdArg(Input);
+    cmdMessenger.sendCmdArg(Output);
+    cmdMessenger.sendCmdArg(Setpoint);
+    cmdMessenger.sendCmdArg(Kp);
+    cmdMessenger.sendCmdArg(Kd);
+    cmdMessenger.sendCmdArg(Ki);
+    cmdMessenger.sendCmdEnd();
+    lastLogTime = millis();
+  }
+
+  if (opState == RUN) {
+    DoControl();
+  }
+
+  delay(100);
+}
+
+// ************************************************
+// Commands callbacks
+// ************************************************
+void SystemReady() {
+  // In response to ping. We just send a throw-away Acknowledgement to say "im
+  // alive"
+  cmdMessenger.sendCmd(kACK, "System ready");
+}
+
+void UnknownCmd() {
+  // Default response for unknown commands and corrupt messages
+  cmdMessenger.sendCmd(kERR, "Unknown command");
+}
+
+void SystemSetSetpoint() {
+  float _sp = cmdMessenger.readFloatArg();
+  if (_sp >= 0) {
+    Setpoint = _sp;
+    cmdMessenger.sendCmd(kACK, "Target temperature set to " + String(Setpoint) + "° C");
+  }
+}
+
+void SystemSetKp() {
+  float _kp = cmdMessenger.readFloatArg();
+  if (_kp >= 0) {
+    Kp = _kp;
+    myPID.SetTunings(Kp, Ki, Kd);
+    cmdMessenger.sendCmd(kACK, "Kp parameter set to " + String(Kp));
+  }
+}
+
+void SystemSetKd() {
+  float _kd = cmdMessenger.readFloatArg();
+  if (_kd >= 0) {
+    Kd = _kd;
+    myPID.SetTunings(Kp, Ki, Kd);
+    cmdMessenger.sendCmd(kACK, "Kd parameter set to " + String(Kd));
+  }
+}
+
+void SystemSetKi() {
+  float _ki = cmdMessenger.readFloatArg();
+  if (_ki >= 0) {
+    Ki = _ki;
+    myPID.SetTunings(Kp, Ki, Kd);
+    cmdMessenger.sendCmd(kACK, "Ki parameter set to " + String(Ki));
+  }
+}
+
+void SystemRun() {
+  myPID.SetMode(AUTOMATIC);
+  windowStartTime = millis();
+  opState = RUN;
+}
+
+// ************************************************
+// Initial State - press RIGHT to enter setpoint
+// ************************************************
+void SystemOff() {
+  myPID.SetMode(MANUAL);
+  lcd.noBacklight();
+  digitalWrite(RELAY_PIN, LOW);  // make sure it is off
+}
+
+// ************************************************
+// Execute the control loop
+// ************************************************
+void DoControl() {
+  if (tuning) {  // run the auto-tuner
+    if (aTune.Runtime()) {  // returns 'true' when done
       FinishAutoTune();
     }
-  } else  // Execute control algorithm
-  {
+  } else {  // Execute control algorithm
     myPID.Compute();
   }
 
@@ -391,13 +338,13 @@ void DriveOutput() {
   long now = millis();
   // Set the output
   // "on time" is proportional to the PID output
-  if (now - windowStartTime > WindowSize) {  // time to shift the Relay Window
-    windowStartTime += WindowSize;
+  if (now - windowStartTime > kWindowSize) {  // time to shift the Relay Window
+    windowStartTime += kWindowSize;
   }
   if ((onTime > 100) && (onTime > (now - windowStartTime))) {
-    digitalWrite(RelayPin, HIGH);
+    digitalWrite(RELAY_PIN, HIGH);
   } else {
-    digitalWrite(RelayPin, LOW);
+    digitalWrite(RELAY_PIN, LOW);
   }
 }
 
@@ -410,9 +357,9 @@ void StartAutoTune() {
   ATuneModeRemember = myPID.GetMode();
 
   // set up the auto-tune parameters
-  aTune.SetNoiseBand(aTuneNoise);
-  aTune.SetOutputStep(aTuneStep);
-  aTune.SetLookbackSec((int)aTuneLookBack);
+  aTune.SetNoiseBand(kATuneNoise);
+  aTune.SetOutputStep(kATuneStep);
+  aTune.SetLookbackSec((int)kATuneLookBack);
   tuning = true;
 }
 
@@ -439,17 +386,17 @@ void FinishAutoTune() {
 // Save any parameter changes to EEPROM
 // ************************************************
 void SaveParameters() {
-  if (Setpoint != EEPROM_readDouble(SpAddress)) {
-    EEPROM_writeDouble(SpAddress, Setpoint);
+  if (Setpoint != EEPROM_readDouble(kSpAddress)) {
+    EEPROM_writeDouble(kSpAddress, Setpoint);
   }
-  if (Kp != EEPROM_readDouble(KpAddress)) {
-    EEPROM_writeDouble(KpAddress, Kp);
+  if (Kp != EEPROM_readDouble(kKpAddress)) {
+    EEPROM_writeDouble(kKpAddress, Kp);
   }
-  if (Ki != EEPROM_readDouble(KiAddress)) {
-    EEPROM_writeDouble(KiAddress, Ki);
+  if (Ki != EEPROM_readDouble(kKiAddress)) {
+    EEPROM_writeDouble(kKiAddress, Ki);
   }
-  if (Kd != EEPROM_readDouble(KdAddress)) {
-    EEPROM_writeDouble(KdAddress, Kd);
+  if (Kd != EEPROM_readDouble(kKdAddress)) {
+    EEPROM_writeDouble(kKdAddress, Kd);
   }
 }
 
@@ -458,10 +405,10 @@ void SaveParameters() {
 // ************************************************
 void LoadParameters() {
   // Load from EEPROM
-  Setpoint = EEPROM_readDouble(SpAddress);
-  Kp = EEPROM_readDouble(KpAddress);
-  Ki = EEPROM_readDouble(KiAddress);
-  Kd = EEPROM_readDouble(KdAddress);
+  Setpoint = EEPROM_readDouble(kSpAddress);
+  Kp = EEPROM_readDouble(kKpAddress);
+  Ki = EEPROM_readDouble(kKiAddress);
+  Kd = EEPROM_readDouble(kKdAddress);
 
   // Use defaults if EEPROM values are invalid
   if (isnan(Setpoint)) {
