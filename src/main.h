@@ -1,3 +1,6 @@
+#ifndef H_MAIN
+#define H_MAIN
+
 // ************************************************
 // Pin definitions
 // ************************************************
@@ -26,3 +29,5 @@ void LoadParameters();
 
 void EEPROM_writeDouble(int address, double value);
 double EEPROM_readDouble(int address);
+
+#endif  // H_MAIN

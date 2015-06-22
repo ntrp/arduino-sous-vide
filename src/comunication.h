@@ -14,28 +14,42 @@ enum {
 
   // Defined commands
   kRUN = 004,   // run the controller
-  kSTOP = 005,  // stop controller
-  kOFF = 006,   // shutdown all components
+  kIDLE = 005,  // stop controller
+  kLCD_ON = 006,   // power up lcd 
+  kLCD_OFF = 007,   // shutdown lcd
 
   kSET_SP = 012,  // 10, set target temperature
   kSET_KP = 013,  // 11, set Kp PID parameter
-  kSET_KD = 014,  // 12, set Kd PID parameter
-  kSET_KI = 015,  // 13, set Ki PID parameter
+  kSET_KI = 014,  // 12, set Ki PID parameter
+  kSET_KD = 015,  // 13, set Kd PID parameter
   kLOAD = 016,    // 14, load setting from memory
   kSAVE = 017,    // 15, save current settings to memory
 
+  kATUNE = 020,   // 16, start autotune
+  kATUNE_STOP = 021,   // 16, start autotune
+
+  // Sending commands
   kUPDATE = 020,
 
   kSEND_CMDS_END,  // Mustnt delete this line
 };
 
+void SystemReady();
 void SystemRun();
-void SystemOff();
+void SystemIdle();
+void SystemStartAutoTune();
+void SystemStopAutoTune();
+void LcdOn();
+void LcdOff();
+
 void SystemSetSetpoint();
 void SystemSetKp();
 void SystemSetKd();
 void SystemSetKi();
-void SystemReady();
+
+void SystemLoadParameters();
+void SystemSaveParameters();
+
 void UnknownCmd();
 
 #endif  // H_COMUNICATION

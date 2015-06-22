@@ -19,7 +19,6 @@
 #include <SoftwareSerial.h>
 
 #include <CmdMessenger.h>
-#include <Base64.h>
 #include <Streaming.h>
 
 // So we can save and retrieve settings
@@ -36,6 +35,7 @@
 double Setpoint;
 double Input;
 double Output;
+unsigned long timerStart;
 
 // pid tuning parameters
 double Kp;
@@ -66,8 +66,6 @@ double kATuneStep = 500;
 double kATuneNoise = 1;
 unsigned int kATuneLookBack = 20;
 
-boolean tuning = false;
-
 PID_ATune aTune(&Input, &Output);
 
 // ************************************************
@@ -76,17 +74,23 @@ PID_ATune aTune(&Input, &Output);
 
 LiquidCrystal_I2C lcd(0x27, 20, 4);
 
-byte degree[8] =  // define the degree symbol
-    {B00110, B01001, B01001, B00110, B00000, B00000, B00000, B00000};
+byte ch_degree[8] = {B00110, B01001, B01001, B00110,
+                     B00000, B00000, B00000, B00000};
+byte ch_temp[8] = {B00100, B01010, B01010, B01110,
+                   B01110, B11111, B11111, B01110};
+byte ch_time[8] = {B00000, B01110, B00100, B01110,
+                   B10011, B10101, B10001, B01110};
+byte ch_bs[8] = {B00000, B10000, B01000, B00100,
+                 B00010, B00001, B00000, B00000};
 
-const int logInterval = 10000;  // log every 10 seconds
+const int logInterval = 1000;  // log every 10 seconds
 long lastLogTime = 0;
 
 // ************************************************
 // States for state machine
 // ************************************************
-enum operatingState { OFF = 0, RUN, AUTOTUNE };
-operatingState opState = OFF;
+enum operatingState { IDLE = 0, RUN, AUTOTUNE };
+operatingState opState = IDLE;
 
 // ************************************************
 // Sensor Variables and constants
@@ -110,13 +114,22 @@ void ConfigureCmdMessenger() {
   cmdMessenger.printLfCr();
   cmdMessenger.attach(kARDUINO_READY, SystemReady);
   cmdMessenger.attach(kRUN, SystemRun);
-  cmdMessenger.attach(kOFF, SystemOff);
+  cmdMessenger.attach(kIDLE, SystemIdle);
+  cmdMessenger.attach(kATUNE, SystemStartAutoTune);
+  cmdMessenger.attach(kATUNE_STOP, SystemStopAutoTune);
+  cmdMessenger.attach(kLCD_ON, LcdOn);
+  cmdMessenger.attach(kLCD_OFF, LcdOff);
   cmdMessenger.attach(kSET_KP, SystemSetKp);
-  cmdMessenger.attach(kSET_KD, SystemSetKd);
   cmdMessenger.attach(kSET_KI, SystemSetKi);
+  cmdMessenger.attach(kSET_KD, SystemSetKd);
   cmdMessenger.attach(kSET_SP, SystemSetSetpoint);
+  cmdMessenger.attach(kLOAD, SystemLoadParameters);
+  cmdMessenger.attach(kSAVE, SystemSaveParameters);
   cmdMessenger.attach(UnknownCmd);
 }
+
+String points[] = {"   ", ".  ", ".. ", "..."};
+char rotator[] = {'|', '/', '-', B00000011};
 
 // ************************************************
 // Setup and diSplay initial screen
@@ -141,7 +154,10 @@ void setup() {
 
   // Initialize LCD DiSplay
   lcd.begin();
-  lcd.createChar(0, degree);  // create degree symbol from the binary
+  lcd.createChar(0, ch_degree);
+  lcd.createChar(1, ch_temp);
+  lcd.createChar(2, ch_time);
+  lcd.createChar(3, ch_bs);
   lcd.backlight();
 
   lcd.clear();
@@ -181,7 +197,7 @@ void setup() {
 // Timer Interrupt Handler
 // ************************************************
 SIGNAL(TIMER2_OVF_vect) {
-  if (opState == OFF) {
+  if (opState == IDLE) {
     digitalWrite(RELAY_PIN, LOW);  // make sure relay is off
   } else {
     DriveOutput();
@@ -207,15 +223,22 @@ void loop() {
   lcd.setCursor(0, 0);
   switch (opState) {
     case RUN:
-      lcd.print("> Running! ");
+      lcd.print("> Running");
+      lcd.print(points[(millis() / 500) % 4]);
       break;
-    case OFF:
-      lcd.print("> IDLE     ");
+    case AUTOTUNE:
+      lcd.print("> Autotune [");
+      lcd.write(rotator[(millis() / 250) % 4]);
+      lcd.print("]");
+      break;
+    case IDLE:
+      lcd.print("> IDLE        ");
       break;
   }
   // Temp
   lcd.setCursor(0, 2);
-  lcd.print("T: ");
+  lcd.write(1);
+  lcd.print(" ");
   lcd.print(Input);
   lcd.print(" ");
   lcd.write(0);
@@ -226,25 +249,44 @@ void loop() {
 
   float pct = map(Output, 0, kWindowSize, 0, 1000);
   lcd.setCursor(0, 3);
-  lcd.print("P: ");
+  lcd.print("P ");
   lcd.print(pct / 10);
   // lcd.print(Output);
-  lcd.print("%");
+  lcd.print("%   ");
+
+  long seconds = 0;
+  long minutes = 0;
+  long hours = 0;
+  long timerDelay = 0;
+  if (timerStart > 0) {
+    timerDelay = millis() - timerStart;
+    seconds = (timerDelay / 1000) % 60;
+    minutes = (timerDelay / 60000) % 60;
+    hours = (timerDelay / 3600000);
+  }
+
+  lcd.setCursor(10, 3);
+  lcd.write(2);
+  lcd.setCursor(12, 3);
+  lcd.print((hours < 10 ? "0" : "") + String(hours));
+  lcd.print((minutes < 10 ? ":0" : ":") + String(minutes));
+  lcd.print((seconds < 10 ? ":0" : ":") + String(seconds));
 
   // periodically log to serial port in csv format
   if (millis() - lastLogTime > logInterval) {
     cmdMessenger.sendCmdStart(kUPDATE);
     cmdMessenger.sendCmdArg(Input);
-    cmdMessenger.sendCmdArg(Output);
+    cmdMessenger.sendCmdArg(pct / 10);
     cmdMessenger.sendCmdArg(Setpoint);
     cmdMessenger.sendCmdArg(Kp);
-    cmdMessenger.sendCmdArg(Kd);
     cmdMessenger.sendCmdArg(Ki);
+    cmdMessenger.sendCmdArg(Kd);
+    cmdMessenger.sendCmdArg(opState);
     cmdMessenger.sendCmdEnd();
     lastLogTime = millis();
   }
 
-  if (opState == RUN) {
+  if (opState == RUN || opState == AUTOTUNE) {
     DoControl();
   }
 
@@ -260,16 +302,35 @@ void SystemReady() {
   cmdMessenger.sendCmd(kACK, "System ready");
 }
 
-void UnknownCmd() {
-  // Default response for unknown commands and corrupt messages
-  cmdMessenger.sendCmd(kERR, "Unknown command");
+void SystemRun() {
+  myPID.SetMode(AUTOMATIC);
+  windowStartTime = millis();
+  opState = RUN;
+  timerStart = millis();
 }
+
+void SystemIdle() {
+  myPID.SetMode(MANUAL);
+  Output = 0.0;
+  digitalWrite(RELAY_PIN, LOW);  // make sure it is off
+  opState = IDLE;
+  timerStart = 0;
+}
+
+void SystemStartAutoTune() { StartAutoTune(); }
+
+void SystemStopAutoTune() { FinishAutoTune(); }
+
+void LcdOn() { lcd.backlight(); }
+
+void LcdOff() { lcd.noBacklight(); }
 
 void SystemSetSetpoint() {
   float _sp = cmdMessenger.readFloatArg();
   if (_sp >= 0) {
     Setpoint = _sp;
-    cmdMessenger.sendCmd(kACK, "Target temperature set to " + String(Setpoint) + "° C");
+    cmdMessenger.sendCmd(
+        kACK, "Target temperature set to " + String(Setpoint) + " C");
   }
 }
 
@@ -300,27 +361,27 @@ void SystemSetKi() {
   }
 }
 
-void SystemRun() {
-  myPID.SetMode(AUTOMATIC);
-  windowStartTime = millis();
-  opState = RUN;
+void SystemLoadParameters() {
+  LoadParameters();
+  cmdMessenger.sendCmd(kACK, "Parameters loaded.");
 }
 
-// ************************************************
-// Initial State - press RIGHT to enter setpoint
-// ************************************************
-void SystemOff() {
-  myPID.SetMode(MANUAL);
-  lcd.noBacklight();
-  digitalWrite(RELAY_PIN, LOW);  // make sure it is off
+void SystemSaveParameters() {
+  SaveParameters();
+  cmdMessenger.sendCmd(kACK, "Parameters saved.");
+}
+
+void UnknownCmd() {
+  // Default response for unknown commands and corrupt messages
+  cmdMessenger.sendCmd(kERR, "Unknown command");
 }
 
 // ************************************************
 // Execute the control loop
 // ************************************************
 void DoControl() {
-  if (tuning) {  // run the auto-tuner
-    if (aTune.Runtime()) {  // returns 'true' when done
+  if (opState == AUTOTUNE) {  // run the auto-tuner
+    if (aTune.Runtime()) {    // returns 'true' when done
       FinishAutoTune();
     }
   } else {  // Execute control algorithm
@@ -353,22 +414,18 @@ void DriveOutput() {
 // ************************************************
 
 void StartAutoTune() {
-  // REmember the mode we were in
-  ATuneModeRemember = myPID.GetMode();
-
   // set up the auto-tune parameters
+  aTune.SetControlType(1);  // 0 PI, 1 PID
   aTune.SetNoiseBand(kATuneNoise);
   aTune.SetOutputStep(kATuneStep);
   aTune.SetLookbackSec((int)kATuneLookBack);
-  tuning = true;
+  opState = AUTOTUNE;
 }
 
 // ************************************************
 // Return to normal control
 // ************************************************
 void FinishAutoTune() {
-  tuning = false;
-
   // Extract the auto-tune calculated parameters
   Kp = aTune.GetKp();
   Ki = aTune.GetKi();
@@ -380,6 +437,7 @@ void FinishAutoTune() {
 
   // Persist any changed parameters to EEPROM
   SaveParameters();
+  SystemIdle();
 }
 
 // ************************************************
